@@ -1,8 +1,11 @@
 package com.ems.backend.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.*;
 
 import com.ems.backend.dto.EmployeeDto;
+import com.ems.backend.entity.Employee;
 import com.ems.backend.service.EmployeeService;
 
 @RestController
@@ -16,8 +19,21 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
+    // Add Employee
     @PostMapping
     public String addEmployee(@RequestBody EmployeeDto employeeDto) {
         return employeeService.addEmployee(employeeDto);
+    }
+
+    // Get All Employees
+    @GetMapping
+    public List<Employee> getAllEmployees() {
+        return employeeService.getAllEmployees();
+    }
+
+    // Get Employee By ID
+    @GetMapping("/{id}")
+    public Employee getEmployeeById(@PathVariable Long id) {
+        return employeeService.getEmployeeById(id);
     }
 }

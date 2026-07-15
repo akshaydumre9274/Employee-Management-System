@@ -1,6 +1,7 @@
 package com.ems.backend.serviceimpl;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -41,5 +42,16 @@ public class EmployeeServiceImpl implements EmployeeService {
         employeeRepository.save(employee);
 
         return "Employee Added Successfully";
+    }
+
+    @Override
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
+    }
+
+    @Override
+    public Employee getEmployeeById(Long id) {
+        return employeeRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Employee Not Found"));
     }
 }
