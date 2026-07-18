@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ems.backend.dto.EmployeeDto;
 import com.ems.backend.entity.Employee;
+import org.springframework.data.domain.Page;
 
 public interface EmployeeService {
 
@@ -18,4 +19,6 @@ public interface EmployeeService {
      String deleteEmployee(Long id);
 
      List<Employee> searchEmployees(String keyword);
+
+     Page<Employee> getEmployees(int page, int size, String sortBy);
 }

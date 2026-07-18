@@ -10,6 +10,11 @@ import com.ems.backend.entity.Employee;
 import com.ems.backend.repository.EmployeeRepository;
 import com.ems.backend.service.EmployeeService;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
@@ -96,4 +101,13 @@ public class EmployeeServiceImpl implements EmployeeService {
                     keyword
             );
 }
+@Override
+public Page<Employee> getEmployees(int page, int size, String sortBy) {
+
+    Pageable pageable =
+            PageRequest.of(page, size, Sort.by(sortBy).ascending());
+
+    return employeeRepository.findAll(pageable);
+}
+
 }

@@ -8,6 +8,8 @@ import com.ems.backend.dto.EmployeeDto;
 import com.ems.backend.entity.Employee;
 import com.ems.backend.service.EmployeeService;
 
+import org.springframework.data.domain.Page;
+
 @RestController
 @RequestMapping("/api/employees")
 @CrossOrigin(origins = "http://localhost:5173")
@@ -26,10 +28,10 @@ public class EmployeeController {
     }
 
     // Get All Employees
-    @GetMapping
-    public List<Employee> getAllEmployees() {
-        return employeeService.getAllEmployees();
-    }
+    @GetMapping("/all")
+public List<Employee> getAllEmployees() {
+    return employeeService.getAllEmployees();
+}
 
     // Get Employee By ID
     @GetMapping("/{id}")
@@ -55,6 +57,19 @@ public class EmployeeController {
     @GetMapping("/search")
     public List<Employee> searchEmployees(@RequestParam String keyword) {
     return employeeService.searchEmployees(keyword);
+}
+
+@GetMapping
+public Page<Employee> getEmployees(
+
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "5") int size,
+        @RequestParam(defaultValue = "id") String sortBy
+
+) {
+
+    return employeeService.getEmployees(page, size, sortBy);
+
 }
 
 }
