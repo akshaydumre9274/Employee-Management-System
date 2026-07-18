@@ -29,8 +29,14 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
+
                         .requestMatchers("/api/auth/**").permitAll()
+
+                        // Allow uploaded images
+                        .requestMatchers("/uploads/**").permitAll()
+
                         .anyRequest().authenticated())
+
                 .addFilterBefore(jwtAuthenticationFilter,
                         UsernamePasswordAuthenticationFilter.class);
 
