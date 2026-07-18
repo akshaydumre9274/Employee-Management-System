@@ -54,11 +54,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Employee Not Found"));
     }
-    @Override
-public String updateEmployee(Long id, EmployeeDto employeeDto) {
 
-    Employee employee = employeeRepository.findById(id)
-            .orElseThrow(() -> new RuntimeException("Employee Not Found"));
+    @Override
+    public String updateEmployee(Long id, EmployeeDto employeeDto) {
+
+    Employee employee = employeeRepository.findById(id) .orElseThrow(() -> new RuntimeException("Employee Not Found"));
 
     employee.setFirstName(employeeDto.getFirstName());
     employee.setLastName(employeeDto.getLastName());
@@ -73,5 +73,15 @@ public String updateEmployee(Long id, EmployeeDto employeeDto) {
     employeeRepository.save(employee);
 
     return "Employee Updated Successfully";
-}
+  }
+
+  @Override
+    public String deleteEmployee(Long id) {
+
+        Employee employee = employeeRepository.findById(id) .orElseThrow(() -> new RuntimeException("Employee Not Found"));
+
+        employeeRepository.delete(employee);
+
+    return "Employee Deleted Successfully";
+  }
 }

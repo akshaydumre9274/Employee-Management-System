@@ -14,4 +14,6 @@ public interface EmployeeService {
     Employee getEmployeeById(Long id);
 
     String updateEmployee(Long id, EmployeeDto employeeDto);
+
+     String deleteEmployee(Long id);
 }
