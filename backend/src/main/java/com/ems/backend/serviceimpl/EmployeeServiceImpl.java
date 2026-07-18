@@ -84,4 +84,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     return "Employee Deleted Successfully";
   }
+
+     @Override
+    public List<Employee> searchEmployees(String keyword) {
+
+    return employeeRepository
+            .findByFirstNameContainingIgnoreCaseOrLastNameContainingIgnoreCaseOrEmailContainingIgnoreCaseOrDepartmentContainingIgnoreCase(
+                    keyword,
+                    keyword,
+                    keyword,
+                    keyword
+            );
+}
 }

@@ -50,4 +50,11 @@ public class EmployeeController {
     {
         return employeeService.deleteEmployee(id);
     }
+
+    //search employee
+    @GetMapping("/search")
+    public List<Employee> searchEmployees(@RequestParam String keyword) {
+    return employeeService.searchEmployees(keyword);
+}
+
 }
